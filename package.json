@@ -1,0 +1,29 @@
+{
+  "name": "handleshells",
+  "version": "0.0.0",
+  "description": "Allows the building and running of shell commands using handlebars templates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koopero/node-handleshells.git"
+  },
+  "keywords": [
+    "handlebars",
+    "shell",
+    "escape",
+    "subprocess"
+  ],
+  "author": "Samm Cooper <samm@sublight.ca>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koopero/node-handleshells/issues"
+  },
+  "homepage": "https://github.com/koopero/node-handleshells",
+  "dependencies": {
+    "handlebars": "^3.0.0",
+    "shell-escape": "^0.2.0"
+  }
+}
