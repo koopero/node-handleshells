@@ -2,14 +2,37 @@ const
   _ = require('underscore'),
   async = require('async'),
   child_process = require('child_process'),
-  HB = require('handlebars').create()
+  HB = createHandlebars()
 ;
 
-HB.escapeExpression = escapeShell;
-HB.Utils.escapeExpression = escapeShell;
+exports.Handlebars = HB;
+exports.createHandlebars = createHandlebars;
+
+function createHandlebars( opt ) {
+  opt = opt || {};
+
+  console.log( opt );
+
+  var
+    HB = require('handlebars').create(),
+    pathlib = opt.pathlib || require('path')
+  ;
+
+  HB.escapeExpression = escapeShell;
+  HB.Utils.escapeExpression = escapeShell;
+
+  HB.registerHelper('join', function () {
+    var args = Array.prototype.slice.call( arguments );
+    args = args.filter( function ( arg ) { return 'string' == typeof arg } );
+    return pathlib.join.apply( pathlib, args );
+  });
+
+  return HB;
 
 
-function handleShells( command, opt, context, cb ) {
+}
+
+function handleShells( command, context, cb ) {
 
   function bindContext( context ) {
 
