@@ -1,10 +1,10 @@
 {
   "name": "handleshells",
-  "version": "0.0.1",
-  "description": "Allows the building and running of shell commands using handlebars templates.",
+  "version": "0.1.0",
+  "description": "Runs shell commands using handlebars templates.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -14,20 +14,24 @@
     "handlebars",
     "shell",
     "escape",
-    "subprocess"
+    "child_process",
+    "exec",
+    "spawn"
   ],
-  "author": "Samm Cooper <samm@sublight.ca>",
+  "author": "Samm Zuest Cooper <koopero@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/koopero/node-handleshells/issues"
   },
   "homepage": "https://github.com/koopero/node-handleshells",
   "dependencies": {
-    "async": "^0.9.0",
-    "chai": "^2.1.0",
-    "handlebars": "^3.0.0",
-    "lodash": "^3.6.0",
-    "minimist": "^1.1.0",
-    "shell-escape": "^0.2.0"
+    "bluebird": "^3.4.7",
+    "handlebars": "^4.0.6",
+    "lodash": "^4.17.4",
+    "require-directory": "^2.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "minimist": "^1.2.0"
   }
 }

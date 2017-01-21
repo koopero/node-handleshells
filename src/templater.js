@@ -1,8 +1,7 @@
-const
-  _ = require('lodash'),
-  handlebars = require('handlebars'),
-  requireDir = require('./requireDir')
-;
+const _ = require('lodash')
+    , handlebars = require('handlebars')
+    , helpers = require('./helpers')
+
 
 module.exports = function templater( opt ) {
   opt = opt || {};
@@ -14,9 +13,9 @@ module.exports = function templater( opt ) {
   HB.escapeExpression = HB.Utils.escapeExpression = require('./escape.js');
 
   _.forEach(
-    requireDir( __dirname, 'helpers'),
+    helpers,
     function ( helperBuilder, key ) {
-      
+
       const helper = helperBuilder( opt, HB )
       HB.registerHelper( key, helper )
     }

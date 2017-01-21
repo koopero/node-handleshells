@@ -21,22 +21,29 @@ module.exports = function argsBuilder ( opt, hb ) {
 
     _.extend( argsHash, fn.hash )
 
-
     var argsArr = []
 
-    _.forEach( argsHash, function ( v, k ) {
+    _.forEach( argsHash, function eachArg( v, k ) {
       if ( k[0] != '-' )
         k = (k.length > 1 ? '--' : '-') + k
 
       if ( v === true )
         v = '';
 
-      if ( v )
+      if ( v === false )
+        return
+
+      if ( v || v === 0 )
         k += ' '+escape( v )
 
       argsArr.push( k )
     })
 
-    return new hb.SafeString( argsArr.join(' ') )
+    var result = argsArr.join(' ')
+
+    if ( result )
+      return new hb.SafeString( result )
+
+    return ''
   }
 };
