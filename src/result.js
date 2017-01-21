@@ -20,8 +20,6 @@ function result( proc, stdout, stderr ) {
     // Not JSON, not big deal
   }
 
-
-
   return res
 }
 

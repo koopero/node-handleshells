@@ -1,8 +1,13 @@
-Allows the building and running of shell commands using handlebars templates.
+`handleshells` allows for easy calling of command line utilities by processing
+command line arguments with [handlebars](https://www.npmjs.com/package/handlebars).
+It provides:
 
-# Examples
+- Automatic escaping
+- Promise-based execution
+- Useful template helpers
 
-## ffprobe
+# Example
+
 The following example uses [ffprobe](https://ffmpeg.org/ffprobe.html) to extract
 metadata from a video file.
 
@@ -27,13 +32,43 @@ handleshells.exec( command, { videoFile } )
 
 # API
 
-## compile
+## Functions
 
-## exec
+### compile
+Compile a command and return the escaped command line.
+
+#### Example
+``` js
+assert.equal(
+  handleshells.compile( 'touch {{ file }}', { file: 'foo.txt' } ),
+  'touch foo.txt'
+)
+```
+
+### exec
+Compiles and then executes a command.
+#### Result
+- **pid** : The process id of spawned command.
+- **exitCode** : The status of the command's exit.
+- **stdout** : The output of the command, usually String.
+- **stderr** : The errors from the command, usually String.
+- **data** : `stdout` as JSON, if applicable.
+- **dataerr** : `stderr` as JSON, if applicable.
+
+#### Example
+``` js
+handleshells.exec( 'echo {{ text }}', { text: 'Hello, world!'} )
+  .then( ( result ) => {
+    assert.equal( result.stdout, 'Hello, world!\n' )
+  } )
+```
+
 
 ## Template Helpers
 
 ### args
+
+Spread objects as command line options.
 
 ``` js
 const options = {
@@ -47,6 +82,8 @@ assert.equal(
 ```
 
 ### join
+
+Join strings together into paths.
 
 ``` js
 const dir = 'bar'

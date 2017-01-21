@@ -2,6 +2,20 @@ const handleshells = require('..')
     , assert = require('chai').assert
 
 describe('README', () => {
+  it('compile example', () => {
+    assert.equal(
+      handleshells.compile( 'touch {{ file }}', { file: 'foo.txt' } ),
+      'touch foo.txt'
+    )  
+  })
+
+  it('exec example', () => {
+    handleshells.exec( 'echo {{ text }}', { text: 'Hello, world!'} )
+      .then( ( result ) => {
+        assert.equal( result.stdout, 'Hello, world!\n' )
+      } )
+  })
+
   it('args example', () => {
     const options = {
       a: 'foo',
