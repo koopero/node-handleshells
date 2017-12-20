@@ -5,6 +5,10 @@ module.exports = function escapeShell( str ) {
   if ( str.string )
     return str.string
 
+  if ( Array.isArray( str ) ) {
+    return str.map( escapeShell ).join(' ')
+  }
+
   // Shamelessly stolen from
   // https://github.com/xxorax/node-shell-escape
   if (/[^\.A-Za-z0-9_\/:=-]/.test(str)) {

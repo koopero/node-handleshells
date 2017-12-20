@@ -12,6 +12,7 @@
   },
   "keywords": [
     "handlebars",
+    "template",
     "shell",
     "escape",
     "child_process",
